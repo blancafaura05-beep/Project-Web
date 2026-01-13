@@ -10,7 +10,6 @@ class OrderItem(SQLModel, table=True):
     unit_price_cents: int
     quantity: int
 
-
 class OrderItemPublic(SQLModel):
     id: int
     product_id: int

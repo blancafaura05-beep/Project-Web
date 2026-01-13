@@ -1,19 +1,16 @@
 from datetime import datetime, timedelta, timezone
 from typing import Any
-
 from jose import jwt, JWTError
 from passlib.context import CryptContext
 
-# ✅ Evita bcrypt (problemas en Windows/Python 3.14) y no tiene el límite de 72 bytes
 pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 
 JWT_SECRET = "CHANGE_ME_IN_PROD"
 JWT_ALG = "HS256"
-JWT_EXPIRE_MINUTES = 60 * 24  # 24h
+JWT_EXPIRE_MINUTES = 60 * 24 
 
 
 def hash_password(password: str) -> str:
-    # opcional: limitar longitud para evitar inputs raros
     if len(password) > 256:
         raise ValueError("Password too long")
     return pwd_context.hash(password)

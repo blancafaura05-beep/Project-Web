@@ -1,12 +1,8 @@
 from __future__ import annotations
-
 from datetime import datetime, timezone
 from typing import Optional
-
 from sqlmodel import SQLModel, Field
-
 from .order_item import OrderItemPublic
-
 
 class Order(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -16,7 +12,6 @@ class Order(SQLModel, table=True):
     currency: str = Field(default="USD")
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
-
 class OrderPublic(SQLModel):
     id: int
     status: str
@@ -25,11 +20,9 @@ class OrderPublic(SQLModel):
     created_at: datetime
     items: list[OrderItemPublic]
 
-
 class OrderCreateItem(SQLModel):
     product_id: int
     quantity: int
-
 
 class OrderCreate(SQLModel):
     items: list[OrderCreateItem]

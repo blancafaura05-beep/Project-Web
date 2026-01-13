@@ -2,7 +2,6 @@ from datetime import datetime, timezone
 from typing import Optional
 from sqlmodel import SQLModel, Field
 
-
 class Product(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     title: str = Field(index=True)
@@ -11,10 +10,8 @@ class Product(SQLModel, table=True):
     price_cents: int
     currency: str = Field(default="USD")
     stock: int = Field(default=0)
-
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
-
 
 class ProductPublic(SQLModel):
     id: int
@@ -27,7 +24,6 @@ class ProductPublic(SQLModel):
     created_at: datetime
     updated_at: datetime
 
-
 class ProductCreate(SQLModel):
     title: str
     slug: str
@@ -36,7 +32,6 @@ class ProductCreate(SQLModel):
     currency: str = "USD"
     stock: int = 0
 
-
 class ProductUpdate(SQLModel):
     title: str | None = None
     slug: str | None = None
@@ -44,4 +39,3 @@ class ProductUpdate(SQLModel):
     price_cents: int | None = None
     currency: str | None = None
     stock: int | None = None
-
