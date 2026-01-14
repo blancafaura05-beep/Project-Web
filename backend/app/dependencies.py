@@ -1,9 +1,7 @@
 from typing import Annotated
-
 from fastapi import Depends, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlmodel import Session, select
-
 from .db import get_session
 from .models.user import User
 from .security import decode_token

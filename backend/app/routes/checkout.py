@@ -1,11 +1,9 @@
 from fastapi import APIRouter, HTTPException
 from sqlmodel import SQLModel
-
 from app.dependencies import SessionDep
 from app.models.product import Product
 
 router = APIRouter(prefix="/checkout", tags=["checkout"])
-
 
 class CartItem(SQLModel):
     product_id: int

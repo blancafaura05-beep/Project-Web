@@ -1,8 +1,6 @@
 from datetime import datetime, timezone
-
 from fastapi import APIRouter, HTTPException, Query
 from sqlmodel import select
-
 from app.dependencies import SessionDep
 from ..models.product import Product, ProductCreate, ProductPublic, ProductUpdate
 

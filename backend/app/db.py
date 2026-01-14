@@ -10,8 +10,7 @@ engine = create_engine(sqlite_url, connect_args=connect_args)
 
 
 def create_db_and_tables():
-    # Importa modelos para que SQLModel "registre" las tablas
-    from app.models import user, product, order, order_item  # noqa: F401
+    from app.models import user, product, order, order_item 
     SQLModel.metadata.create_all(engine)
 
 

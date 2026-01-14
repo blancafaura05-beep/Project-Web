@@ -1,6 +1,5 @@
 from fastapi import APIRouter, HTTPException
 from sqlmodel import select
-
 from app.dependencies import SessionDep, CurrentUser
 from app.models.order import Order, OrderCreate, OrderPublic
 from app.models.order_item import OrderItem, OrderItemPublic
@@ -127,5 +126,3 @@ def my_orders(session: SessionDep, user: CurrentUser):
             )
         )
     return result
-
-

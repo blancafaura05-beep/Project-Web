@@ -1,6 +1,5 @@
 from fastapi import APIRouter, HTTPException
 from sqlmodel import select
-
 from app.dependencies import SessionDep, CurrentUser
 from app.models.user import User, UserCreate, UserLogin, UserPublic
 from app.security import hash_password, verify_password, create_access_token
