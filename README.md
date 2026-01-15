@@ -57,14 +57,18 @@ All features required by the assignment were implemented by adapting and extendi
 ## Run the project locally
 
 ### Backend
-cd backend
-pip install -r requirements.txt
-uvicorn app.main:app --reload
+-cd backend
+
+-pip install -r requirements.txt
+
+-uvicorn app.main:app --reload
 
 ### Frontend
-cd frontend/react-router
-npm install
-npm run dev
+-cd frontend/react-router
+
+-npm install
+
+-npm run dev
 
 
 ## Example of user to loging that is already registered
