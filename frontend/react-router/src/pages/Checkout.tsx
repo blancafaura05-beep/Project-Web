@@ -102,7 +102,7 @@ export default function Checkout() {
               : undefined
           }
         >
-          {loading ? "Placing order…" : "Confirm order"}
+          {loading ? "Placing order..." : "Confirm order"}
         </button>
       )}
     </div>

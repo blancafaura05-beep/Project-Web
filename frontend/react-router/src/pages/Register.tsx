@@ -31,7 +31,7 @@ export default function Register() {
       <form onSubmit={onSubmit} style={{ display: "grid", gap: 8, maxWidth: 320 }}>
         <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email" />
         <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="password (min 6)" />
-        <button disabled={loading}>{loading ? "Creating…" : "Create account"}</button>
+        <button disabled={loading}>{loading ? "Creating..." : "Create account"}</button>
       </form>
 
       <p>

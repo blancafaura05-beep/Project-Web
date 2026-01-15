@@ -88,7 +88,7 @@ export default function Cart() {
       <h3>Total: {total / 100}</h3>
 
       <button onClick={onValidate} disabled={loading}>
-        {loading ? "Validating…" : "Validate / Preview checkout"}
+        {loading ? "Validating..." : "Validate / Preview checkout"}
       </button>
     </div>
   );

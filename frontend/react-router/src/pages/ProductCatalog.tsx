@@ -34,13 +34,13 @@ export default function ProductCatalog() {
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="Search…"
+          placeholder="Search..."
         />
         <button onClick={() => load(q)}>Search</button>
         <button onClick={() => { setQ(""); load(); }}>Clear</button>
       </div>
 
-      {loading && <p>Loading…</p>}
+      {loading && <p>Loading...</p>}
       {err && <p style={{ color: "crimson" }}>{err}</p>}
       {!loading && !err && items.length === 0 && <p>No products found</p>}
 

@@ -35,7 +35,7 @@ export default function Login() {
       <form onSubmit={onSubmit} style={{ display: "grid", gap: 8, maxWidth: 320 }}>
         <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email" />
         <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="password" />
-        <button disabled={loading}>{loading ? "Logging in…" : "Login"}</button>
+        <button disabled={loading}>{loading ? "Logging in..." : "Login"}</button>
       </form>
 
       <p>
