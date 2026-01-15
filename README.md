@@ -71,6 +71,23 @@ All features required by the assignment were implemented by adapting and extendi
 -npm run dev
 
 
+## Live Demo
+
+- **Frontend:**  
+  https://project-web-frontend-olive.vercel.app
+
+- **Backend API:**  
+  https://project-web-backend-6fnl.onrender.com
+
+- **API Documentation:**  
+  https://project-web-backend-6fnl.onrender.com/docs
+
+**Note:**  
+The project uses SQLite in the production deployment.  
+Product data may reset after a redeploy.  
+Products can be recreated via the `/docs` endpoint.
+
+
 ## Example of user to loging that is already registered
 Email: user1@test.com
 password: password123
