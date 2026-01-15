@@ -1,48 +1,72 @@
-# React Router
+# Full-Stack E-Commerce Application
 
-React Router is a JavaScript library designed specifically for React to handle client-side routing. It maps specific URL paths to React components, allowing users to navigate between different pages or sections without refreshing the entire page. [React Router](https://www.geeksforgeeks.org/reactjs/reactjs-router/)
+## Project overview
 
-- Maps URLs to React components
-- Handles navigation without full reloads. When the user clicks a <Link> React Router intercepts that and changes the view by re-rendering React components — the browser doesn’t fetch a full new HTML page.
-- Updates the browser’s URL + history
-- Supports dynamic routes, parameters, nested routes, redirects, 404 pages, etc
+This project is a small full-stack e-commerce application built with **FastAPI** for the backend and **React + TypeScript** for the frontend.
 
+The application allows users to:
+- Browse a product catalog
+- Search products by text
+- Add products to a shopping cart
+- Register and log in
+- Validate the cart before checkout
+- Place orders with stock deduction
+- View their order history
 
-## Commands
+The goal of the project is to practice building a complete web application with a backend API and a frontend SPA that communicate correctly with each other.
 
-```bash
-# Create a new React + TypeScript project with Vite
-yarn create vite my-react-app --template react-ts
+## Development process (starting from the Heroes example)
 
-# Navigate to the project directory
-cd my-react-app
+This project was developed starting from one of the example projects provided on the PDU platform, specifically the **Heroes** example.
 
-# Install dependencies
-yarn install
+That example was used only as a **starting point and reference structure**. From there, the project was **modified step by step** until it matched the requirements of the assignment.
 
-# Add React Router
-yarn add react-router-dom
+Main changes made from the original example:
+- The original Heroes domain was replaced with an e-commerce domain (products, users, orders).
+- New database models were created: `User`, `Product`, `Order`, and `OrderItem`.
+- JWT authentication was implemented for user login and protected routes.
+- Shopping cart validation and checkout logic were added.
+- Order creation now updates product stock.
+- A complete React + TypeScript frontend was built to consume the backend API.
 
-# Start the development server
-yarn dev
-```
+All features required by the assignment were implemented by adapting and extending the original example.
 
-## Links
+## Design / architecture decisions
 
-- [Creating a React App](https://react.dev/learn/creating-a-react-app) - Official React guide for project setup
-- [React Router Installation](https://reactrouter.com/start/framework/installation) - Getting started with React Router
-- [React Router Routing Guide](https://reactrouter.com/start/framework/routing#routing) - How to define routes in your application
-- [useEffect Hook Reference](https://react.dev/reference/react/useEffect#usage) - React useEffect documentation
+- **Order vs OrderItem (database modelling):**  
+  Orders are split into two tables: `Order` (the order “header” with user, total, status, date) and `OrderItem` (the order “lines” with product, quantity, and unit price).  
+  This models the real e-commerce case where one order can contain multiple products, and it also lets each line store its own quantity and the price snapshot at purchase time.
 
-Ejecutar backend:(posicionarse en backend)
+- **Checkout validates but does not deduct stock:**  
+  The endpoint `/checkout/validate` only checks if the cart is buyable (product exists, quantity is valid, enough stock) and computes totals. It does **not** modify the database.  
+  Stock is deducted only when the order is actually created in `POST /orders`, so the “real purchase” happens in one place.
+
+- **Checkout response explains what failed and why:**  
+  Instead of returning only “ok / not ok”, checkout returns two lists: `valid_items` and `invalid_items`.  
+  Each invalid item includes a clear `reason` (e.g. product not found, quantity must be > 0, not enough stock). 
+  In this way the user can see exactly what needs to be fixed.
+
+- **Products can be created/updated without admin:**  
+  The assignment does not require the optional admin dashboard. For simplicity, product creation/update endpoints are not restricted to admins.  
+  A future improvement would be adding an `is_admin` flag and protecting those endpoints so only admins can manage products.
+
+- **Password length limits (basic security validation):**  
+  During registration, passwords must have a minimum length (e.g. at least 6 characters).  
+  On the backend hashing function, very long passwords are rejected (e.g. > 256 characters) to avoid extreme inputs and keep password processing reasonable.
+
+## Run the project locally
+
+### Backend
+cd backend
+pip install -r requirements.txt
 uvicorn app.main:app --reload
 
-Ejecutar frontend:
-1) Posicionarse en react-router
-2) npm install 
-3) npm run dev
+### Frontend
+cd frontend/react-router
+npm install
+npm run dev
 
-Email
-user1@test.com
-password
-password123
+
+## Example of user to loging that is already registered
+Email: user1@test.com
+password: password123
