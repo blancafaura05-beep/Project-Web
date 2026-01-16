@@ -54,13 +54,14 @@ All features required by the assignment were implemented by adapting and extendi
   During registration, passwords must have a minimum length (e.g. at least 6 characters).  
   On the backend hashing function, very long passwords are rejected (e.g. > 256 characters) to avoid extreme inputs and keep password processing reasonable.
 
+- **Automatic product seeding:**  
+  To avoid an empty catalog after deployment resets, the backend seeds the database with initial products on startup when no products exist.
+
+
 ## Run the project locally
 
 ### Backend
 -cd backend
-
--pip install -r requirements.txt
-
 -uvicorn app.main:app --reload
 
 ### Frontend
@@ -82,12 +83,6 @@ All features required by the assignment were implemented by adapting and extendi
 - **API Documentation:**  
   https://project-web-backend-6fnl.onrender.com/docs
 
-**Note:**  
-The project uses SQLite in the production deployment.  
-Product data may reset after a redeploy.  
-Products can be recreated via the `/docs` endpoint.
-
-
-## Example of user to loging that is already registered
+## Example of user to try 
 Email: user1@test.com
 password: password123

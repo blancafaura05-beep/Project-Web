@@ -2,16 +2,17 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .db import create_db_and_tables
+from .seed import seed_products
 from .routes import health
 from .routes.auth import router as auth_router
 from .routes.products import router as products_router
 from .routes.checkout import router as checkout_router
 from .routes.orders import router as orders_router
 
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     create_db_and_tables()
+    seed_products()
     yield
 
 
