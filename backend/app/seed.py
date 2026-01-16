@@ -1,6 +1,6 @@
 from sqlmodel import Session, select
 from .db import engine
-from .models.product import Product  # si tu modelo está en app/models/product.py
+from .models.product import Product
 
 
 def seed_products():
